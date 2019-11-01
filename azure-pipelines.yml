@@ -8,14 +8,15 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
-    # the name of the service connection that you created above
+
+
+variables:
+  phpVersion: 7.0
+  # the name of the service connection that you created above
   serviceConnectionToAzure: NewSvcConn
   # the name of your web app here is the same one you used above
   # when you created the web app using the Azure CLI
   appName: SimplePhpTestApp
-
-variables:
-  phpVersion: 7.0
 
 steps:
 - script: |

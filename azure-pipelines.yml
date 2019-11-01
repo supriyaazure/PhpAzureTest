@@ -30,12 +30,6 @@ steps:
 
 # add these as the last steps (below all the other `task` items under `steps`)
 # to deploy to your app service
-- task: ArchiveFiles@1
-  displayName: Archive files
-  inputs:
-    rootFolder: $(System.DefaultWorkingDirectory)
-    includeRootFolder: false
-    archiveType: 7z
 
 - task: PublishBuildArtifacts@1
   displayName: Publish Artifact

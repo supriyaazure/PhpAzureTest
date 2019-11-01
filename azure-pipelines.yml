@@ -8,6 +8,11 @@ trigger:
 
 pool:
   vmImage: 'ubuntu-latest'
+    # the name of the service connection that you created above
+  serviceConnectionToAzure: PhpYmlSvcConn
+  # the name of your web app here is the same one you used above
+  # when you created the web app using the Azure CLI
+  appName: SimplePhpTest
 
 variables:
   phpVersion: 7.0
@@ -32,3 +37,12 @@ steps:
   displayName: 'Publish Artifact: drop'
   inputs:
     PathtoPublish: $(build.artifactstagingdirectory)
+
+- task: AzureWebApp@1
+  displayName: Azure Web App Deploy
+  inputs:
+    azureSubscription: $(serviceConnectionToAzure)
+    appType: webAppLinux
+    appName: $(appName)
+    deployToSlotOrASE: true
+    package: $(build.artifactstagingdirectory)/**/*.zip
